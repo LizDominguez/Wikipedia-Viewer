@@ -5,7 +5,7 @@ html, body {
 
 /*Background animation from Milan Nohejl codepen */
 .background { 
-  z-index: 0;
+  z-index: -1;
   height: 100%;
   width: 100%;
   top: 0;
@@ -41,9 +41,35 @@ html, body {
     100%{background-position:0% 82%}
 }
 
+.logo {
+  text-align: center;
+  color: white;
+  line-height: 20px;
+  font-size: 15px;
+  font-family: 'Open Sans';
+  width: 300px;
+  position:absolute;
+  top: 25%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+  opacity: 0.8;
+}
+
+a:link, a:active, a:hover, a:visited  {
+  font-size: 220px; 
+  line-height: 180px; 
+  color: white !important; 
+  font-family: 'Unna'; 
+  text-decoration: none !important; 
+  opacity: 0.8;
+  box-shadow: none; 
+  border: none; 
+}
+
 .searchbox
 {
     font-size: 20px;
+    color: #fff;
     background-color:rgba(255, 255, 255, 0.5);
     border-radius: 40px;              
     width: 500px;
@@ -52,20 +78,17 @@ html, body {
     top:50%;
     left: 50%;
     margin: -40px 0 0 -250px;
-    overflow: hidden; /* Clear floats */
+    overflow: hidden; 
     z-index: 1000;
 }
 
 input[type="text"]::-webkit-input-placeholder {
   color: #fff;
-  outline: none;
-  padding: 20px;
+  outline: none !important;
 }
 
 input[type="text"]:focus {
-  outline: none;
-  padding: 20px;
-  
+  outline: none !important;
 }
 
 input#search {
@@ -75,12 +98,10 @@ input#search {
   width: 405px;
   height: 50px;
   margin: 17px 0 0 15px;
+  padding: 20px;
 }
 
 button#submit {
-  -webkit-border-radius: 60px;
-  -moz-border-radius: 60px;
-  border-radius: 60px; 
   font-size: 30px;
   color: #fff;
   border: none;
@@ -88,9 +109,21 @@ button#submit {
   width: 60px;
   background: transparent;
   transition: all .2s ease-in-out;
+  text-decoration: none !important;
+  outline: none !important;
 }
 
 button#submit:hover {
-  transform: scale(1.5); 
+  transform: scale(1.5);
+}
+
+.search-results {
+    height: 300px;
+    width: 100%;
+    position:absolute;
+    top: 55%;
+    left: 0%;
+    margin: 0px 0 0 0;
+    overflow: hidden;
 }
 
