@@ -1,5 +1,5 @@
 # Wikipedia-Viewer
-freeCodeCamp wikipedia viewer using Wikipedia API
+A Wikipedia viewer using the Wikipedia API that displays a user's search results, and provides a random search when the "W" is clicked. 
 
 ![alt text](https://github.com/LizDominguez/Wikipedia-Viewer/blob/master/Preview.png)
 
