@@ -4,27 +4,37 @@
 //credit: Coding Tutorials 360
 
 $(document).ready(function () {  
-    "use strict";
+  "use strict";
+  
+  //pressing enter is the same as clicking the search icon
+  $('#search').keypress(function (e) {
+    var key = e.which;
+    if (key === 13)  
+      {
+        $('#submit').click();
+        return false;  
+      }
+  });
   
     //when the submit button is clicked, run 
-    $('#submit').click(function () {
+  $('#submit').click(function () {
       //gets search input and calls wiki API
-        var search = $('#search').val();
-        var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + search + "&format=json&callback=?";
+    var search = $('#search').val();
+    var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + search + "&format=json&callback=?";
     
-        $.ajax({
-            type: "GET",
-            url: url,
-            async: false,
-            dataType: "json",
-            success: function (data) {
+    $.ajax({
+      type: "GET",
+      url: url,
+      async: false,
+      dataType: "json",
+      success: function (data) {
             // heading console.log(data[1][0]);
             //description console.log(data[2][0]);
             //link console.log(data[3][0]);
               
-            $('#results').html('');
+        $('#results').html('');
               
-            for(var i=0; i < data[1].length; i++){
+        for (var i=0; i < data[1].length; i++){
               
              $('#results').append("<li><a href="+data[3][i]+" class ='search-links'>"+data[1][i]+"</a><p>"+data[2][i]+"</p></li>");
                
