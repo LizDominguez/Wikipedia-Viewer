@@ -1,7 +1,6 @@
 
 /*jslint browser: true*/
 /*global $, jQuery*/
-//credit: Coding Tutorials 360
 
 $(document).ready(function () {  
   "use strict";
