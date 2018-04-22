@@ -1,47 +1,50 @@
 
 /*jslint browser: true*/
-/*global $, jQuery*/
+'use strict';
 
-$(document).ready(function () {  
-  "use strict";
-  
-  //pressing enter is the same as clicking the search icon
-  $('#search').keypress(function (e) {
-    var key = e.which;
-    if (key === 13)  
-      {
-        $('#submit').click();
-        return false;  
-      }
-  });
-  
-    //when the submit button is clicked, run 
-  $('#submit').click(function () {
-      //gets search input and calls wiki API
-    var search = $('#search').val();
-    var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + search + "&format=json&callback=?";
+var submitBtn = document.querySelector('#submit'),
+    searchBar = document.querySelector('#search');
+
+function displaySearch() {
     
-    $.ajax({
-      type: "GET",
-      url: url,
-      async: false,
-      dataType: "json",
-      success: function (data) {
-            // heading console.log(data[1][0]);
-            //description console.log(data[2][0]);
-            //link console.log(data[3][0]);
-              
-        $('#results').html('');
-              
-        for (var i=0; i < data[1].length; i++){
-              
-             $('#results').append("<li><a href="+data[3][i]+" class ='search-links'>"+data[1][i]+"</a><p>"+data[2][i]+"</p></li>");
-               
-            }
-            },
-            error: function (errorMessage) {
-                alert("Error");
-            }
-        });
-    });   
+  var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+           if (xmlhttp.status == 200) {
+             var results = document.querySelector("#results");
+             results.innerHTML = '';
+             var data = JSON.parse(xmlhttp.responseText);
+             
+//             console.log(data);
+             
+             for (var i = 0; i < data[1].length; i++) {
+                results.innerHTML += '<li><a href=' + data[3][i] + ' class="search-links">' + data[1][i] + '</a><p>' + data[2][i] + '</p></li>';
+              }
+                
+           }
+           else if (xmlhttp.status == 400) {
+              console.log('There was an error 400');
+           }
+           else {
+               console.log('something else other than 200 was returned');
+           }
+        }
+    };
+
+    var url = "https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchBar.value + "&format=json";
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+
+submitBtn.addEventListener('click', function() {
+  displaySearch();
+});
+
+searchBar.addEventListener('keypress', function(e) { 
+  var key = e.which;
+  if(key == 13) {
+    displaySearch();  
+  }
 });
