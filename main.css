@@ -9,7 +9,6 @@ body {
   display: flex;
 }
 
-/*Background animation from Milan Nohejl codepen */
 .background { 
   z-index: -1;
   height: 160vh;
@@ -137,11 +136,13 @@ a:active, a:hover, a:visited {
   top: 57%;
   left: 0%;
   margin: 0px 0 0 0;
+  overflow: scroll;
 }
 
 a.search-links {
   color: white !important; 
   font-size: 20px;
+  text-decoration: underline;
 }
 
 ul#results {
